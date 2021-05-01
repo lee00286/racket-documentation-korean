@@ -16,7 +16,7 @@ Racket을 사용하기 전, 웹페이지에서 [다운로드](https://racket-lan
 
 개발자이거나 시간이 많지 않은 사람들에게 추천합니다:
 
-- [Quick: 그림과 함께 Racket 시작하기](/튜토리얼/introduction.md): Racket의 맛보기입니다.
+- [Quick: 그림과 함께 Racket 시작하기](/tutorial/introduction.md): Racket의 맛보기입니다.
 - [More: Systems Programming with Racket](https://docs.racket-lang.org/more/index.html): 더 빠르고 깊게 Racket을 알아봅니다. 지나치다는 생각이 들면 그냥 넘어가도 괜찮습니다.
 - [Racket 가이드](https://docs.racket-lang.org/guide/index.html): Racket의 기초에 대한 튜토리얼으로 시작하여 전체적인 Racket 언어에 대해 설명합니다.
 
