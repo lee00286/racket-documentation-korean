@@ -13,8 +13,8 @@
 1. [정의 (Definition)](#정의)
 1. [로컬 바인딩 (Local Binding)](#로컬-바인딩)
 1. [함수와 값 (Functions are Values)](#함수와-값)
-1. [미완] [어휘 범위 (Lexical Scope)](#어휘-범위)
-1. [미완] [리스트 (Lists)](#리스트)
+1. [렉시컬 스코프 (Lexical Scope)](#렉시컬-스코프)
+1. [리스트 (Lists)](#리스트)
 1. [미완] [모듈 (Modules)](#모듈)
 1. [미완] [매크로 (Macros)](#매크로)
 1. [미완] [객체 (Objects)](#객체)
@@ -193,7 +193,7 @@ circle: arity mismatch;
 
 ## 함수와 값
 
-[circle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29) 함수를 호출하는 대신 [circle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29)을 수식으로써 평가해봅시다:
+[circle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29) 함수를 호출하는 대신 [circle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29)을 수식으로서 평가해봅시다:
 
 <pre>
 > <a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a>
@@ -223,7 +223,7 @@ circle: arity mismatch;
 
 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29) 뒤의 괄호 쳐진 이름들은 함수의 인수이며, 수식들은 함수 본체입니다. "함수(function)"와 "프로시저(procedure)" 대신 "lambda"라는 단어를 사용하는 것은 Racket의 역사와 문화의 일부입니다.
 
-함수에서의 [define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)은 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29)를 값으로써 사용하는 간단한 [define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)의 간단한 버전입니다. 예를 들어, `series`의 정의는 아래와 같이 쓸 수 있습니다:
+함수에서의 [define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)은 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29)를 값으로서 사용하는 간단한 [define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)의 간단한 버전입니다. 예를 들어, `series`의 정의는 아래와 같이 쓸 수 있습니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> series
@@ -235,11 +235,79 @@ circle: arity mismatch;
 
 ---
 
-## 어휘 범위
+## 렉시컬 스코프
+
+Racket은 렉시컬 스코프(lexically scoped)인 언어로서, 식별자가 수식으로 사용될 때, 수식의 텍스트 환경이 식별자의 바인딩을 결정한다는 의미입니다. 이 규칙은 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29) 본체의 식별자를 포함한 다른 어느 곳에서도 적용됩니다.
+
+아래의 `rgb-series` 함수에서는, 각 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29)에서 `mk`를 사용하는 것은 `rgb-series`의 인자를 의미하는데, 왜냐하면 텍스트 적인 범위에 있는 바인딩이기 때문입니다:
+
+<pre>
+(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> (rgb-series mk)
+  (<a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29">vc-append</a>
+    (series (<a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a> (sz) (<a href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29">colorize</a> (mk sz) "red")))
+    (series (<a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a> (sz) (<a href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29">colorize</a> (mk sz) "green")))
+    (series (<a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a> (sz) (<a href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29">colorize</a> (mk sz) "blue")))))
+
+> (rgb-series circle)
+<img src="pic/pict_14.png"/>
+> (rgb-series square)
+<img src="pic/pict_15.png"/>
+</pre>
+
+아래의 또 다른 예시에서는 `rgb-maker`가 함수를 가지며, 원래의 함수를 기억하고 사용하는 새 함수를 반환합니다.
+
+<pre>
+(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> (rgb-maker mk)
+  (<a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a> (sz)
+    (<a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29">vc-append</a> (<a href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29">colorize</a> (mk sz) "red")
+               (<a href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29">colorize</a> (mk sz) "green")
+               (<a href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29">colorize</a> (mk sz) "blue"))))
+
+> (series (rgb-maker <a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a>))
+<img src="pic/pict_16.png"/>
+> (series (rgb-maker square))
+<img src="pic/pict_17.png"/>
+</pre>
+
+노트: `rgb-maker`을 사용하여 함수를 결합하는 것이 `rgb-series`를 사용하는 것과 비교하여 그림 내에서 객체의 정렬을 어떻게 다르게 만드는지 주목하십시오.
 
 ---
 
 ## 리스트
+
+Racket은 Lisp("LISt Processor"의 약자) 언어의 스타일을 많은 부분 상속받았고, lists는 Racket의 중요한 부분으로 남아 있습니다.
+
+[list](https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29) 함수는 인수를 숫자 상관없이 받아들이며 지정된 값을 포함하는 리스트를 반환합니다:
+
+<pre>
+> (<a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29">list</a> "red" "green" "blue")
+'("red" "green" "blue")
+> (<a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29">list</a> (<a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a> 10) (square 10))
+'(<img src="pic/pict_18.png"/><img src="pic/pict_19.png"/>)'
+</pre>
+
+보다시피, 리스트는 홑따옴표(single quote) 뒤에 괄호로 둘러싼 리스트 요소를 프린트합니다. 여기서 혼동이 생길 수 있는데, 왜냐하면 괄호는 <code>(<a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a> 10)</code>와 같은 수식과 `'("red" "green" "blue")` 같은 프린트 값 모두에서 사용되기 때문입니다. [다른 곳에서](https://docs.racket-lang.org/guide/Pairs__Lists__and_Racket_Syntax.html#%28part._quoting-lists%29) 논의되었듯이, 따옴표가 가장 큰 차이점입니다. 이 차이점을 강조하기 위해, 문서와 DrRacket에서는 결과로서의 괄호는 파란색으로 프린트합니다.
+
+만약 리스트가 있다면, 당신은 결과적으로 리스트 요소의 각각에 무언가를 하고자 할 것입니다. [map](https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29) 함수는 리스트와 함수를 가져가서 리스트의 각 요소에 함수를 적용시킵니다; 그리고 함수의 결과물을 결합해 새로운 리스트를 반환합니다:
+
+<pre>
+(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> (rainbow p)
+  (<a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29">map</a> (<a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a> (color)
+          (<a href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29">colorize</a> p color))
+       (<a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29">list</a> "red" "orange" "yellow" "green" "blue" "purple")))
+
+> (rainbow (square 5))
+'(<img src="pic/pict_20.png"/><img src="pic/pict_21.png"/><img src="pic/pict_22.png"/><img src="pic/pict_23.png"/><img src="pic/pict_24.png"/><img src="pic/pict_25.png"/>)
+</pre>
+
+리스트에 활용할 수 있는 또 다른 함수에는 [apply](https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29)가 있습니다. 이 함수는 [map](https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29)과 비슷하게 함수와 리스트를 필요로 하지만, [apply](https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29)에게 주어진 함수는 각 인수가 아닌 모든 인수에 한 번에 적용됩니다. [apply](https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29) 함수는 [vc-append](https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29)처럼 인수의 개수에 제한이 없는 함수에 유용하게 쓰입니다.
+
+<pre>
+> (<a href="https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29">apply</a> <a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29">vc-append</a> (rainbow (square 5)))
+<img src="pic/pict_26.png"/>
+</pre>
+
+노트: <code>(<a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29">vc-append</a> (rainbow (square 5)))</code>에서는 [vc-append](https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29)가 리스트를 인수로 받아들이지 않으므로 실행되지 않을 것입니다; 이 함수는 아무 개수의 그림 인수를 받아들입니다. [apply](https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29) 함수는 많은 인수를 받아들이거나 모든 인수를 하나의 값으로 사용하고자 하는 함수 사이의 간격을 연결해줍니다.
 
 ---
 
