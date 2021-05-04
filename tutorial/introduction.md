@@ -275,7 +275,7 @@ Racket은 렉시컬 스코프(lexically scoped)인 언어로서, 식별자가 �
 
 ## 리스트
 
-Racket은 Lisp("LISt Processor"의 약자) 언어의 스타일을 많은 부분 상속받았고, lists는 Racket의 중요한 부분으로 남아 있습니다.
+Racket은 Lisp("LISt Processor"의 약자) 언어의 스타일을 많은 부분 상속받았고, 리스트는 Racket의 중요한 부분으로 남아 있습니다.
 
 [list](https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29) 함수는 인수를 숫자 상관없이 받아들이며 지정된 값을 포함하는 리스트를 반환합니다:
 
@@ -312,6 +312,59 @@ Racket은 Lisp("LISt Processor"의 약자) 언어의 스타일을 많은 부분 
 ---
 
 ## 모듈
+
+정의 창(definitions window) 안에 있는 프로그램은 아래의 코드처럼 시작되므로
+
+<pre>
+<a href="https://docs.racket-lang.org/guide/Module_Syntax.html#%28part._hash-lang%29">#lang</a> <a href="https://docs.racket-lang.org/slideshow/index.html">slideshow</a>
+</pre>
+
+정의 창에 입력한 모든 코드는 모듈 안에 있습니다. 게다가, 이 모듈은 시작할 때 [slideshow](https://docs.racket-lang.org/slideshow/index.html)에서 지정된 모든 모듈을 가져오는데, 이 모듈은 그림을 만드는 함수와 [list](https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29)와 [map](https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29)과 같이 자주 쓰이는 함수를 내보냅니다.
+
+추가로 라이브러리를 가져오기 위해서는, [require](https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29)를 사용합니다. 예를 들어, [pict/flash](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28mod-path._pict%2Fflash%29) 라이브러리는 [filled-flash](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28def._%28%28lib._pict%2Fflash..rkt%29._filled-flash%29%29) 함수를 제공합니다:
+
+<pre>
+(<a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29">require</a> pict/flash)
+
+> (<a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28def._%28%28lib._pict%2Fflash..rkt%29._filled-flash%29%29">filled-flash</a> 40 30)
+<img src="pic/pict_27.png"/>
+</pre>
+
+모듈은 다양한 방법으로 이름 지어지고 분포됩니다:
+
+<ul>
+<li>
+일부 모듈은 Racket distribution에 패키징되어있거나 계층 <em>컬렉션</em>에 설치되어있습니다. 예를 들어, <a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28mod-path._pict%2Fflash%29">pict/flash</a> 모듈의 이름은 "<code>pict</code> 컬렉션에 위치한 <code>flash.rkt</code> 파일에서 구현된 모듈"이라는 뜻입니다. 모듈 이름에 슬래시(slash)가 없을 때는, 그 모듈은 <code>main.rkt</code> 파일에서 구현되었음을 나타냅니다.
+</li>
+
+<li>
+일부 모듈 컬렉션은 <em>패키지</em>로 분배됩니다. 패키지를 설치하기 위해서는 DrRacket의 <b>File</b> 메뉴에 있는 <b>Install Package...</b>를 사용하거나, <code>raco pkg</code> 커맨드 라인 툴을 사용할 수 있습니다. 예를 들어, <code>avl</code> 패키지를 설치하면 <a href="https://docs.racket-lang.org/avl/index.html">avl</a> 모듈을 사용할 수 있습니다.
+
+<br>Packages can be registered at https://pkgs.racket-lang.org/, or they can be installed directly from a Git repository, web site, file, or directory. See <a href="https://docs.racket-lang.org/pkg/index.html">Package Management in Racket</a> for more information about packages.
+</li>
+
+<li>
+To save your definitions, use DrRacket’s [Save Definitions](https://docs.racket-lang.org/drracket/Menus.html#%28part._menu~3afile%29) menu item.
+
+<br>Some modules live relative to other modules, without necessarily belonging to any particular collection or package. For example, in DrRacket, if you save your definitions so far in a file `quick.rkt` and add the line
+
+<pre>
+(<a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._provide%29%29">provide</a> rainbow square)
+</pre>
+
+then you can open a new tab or window in DrRacket, type the new program `use.rkt` in the same directory as `quick.rkt`:
+
+<pre>
+<a href="https://docs.racket-lang.org/guide/Module_Syntax.html#%28part._hash-lang%29">#lang</a> <a href="https://docs.racket-lang.org/reference/index.html">racket</a>
+(<a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29">require</a> "quick.rkt")
+(rainbow (square 5))
+</pre>
+
+and when you run `use.rkt`, a rainbow list of squares is the output. Note that `use.rkt` is written using the initial import [racket](https://docs.racket-lang.org/reference/index.html), which does not supply any picture -- making functions itself -- but does provide [require](https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29) and the function-calling syntax.
+</li>
+</ul>
+
+Racketeers typically write new programs and libraries as modules that import each other through relative paths and collection-based paths. When a program or library developed this way seems useful to others, it can be registered as a package, especially if the implementation is hosted in a Git repository.
 
 ---
 
