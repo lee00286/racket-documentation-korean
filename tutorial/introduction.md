@@ -16,7 +16,7 @@
 1. [렉시컬 스코프 (Lexical Scope)](#렉시컬-스코프)
 1. [리스트 (Lists)](#리스트)
 1. [모듈 (Modules)](#모듈)
-1. [미완] [매크로 (Macros)](#매크로)
+1. [매크로 (Macros)](#매크로)
 1. [미완] [객체 (Objects)](#객체)
 1. [미완] [다음 스텝](#다음-스텝)
 
@@ -33,10 +33,6 @@
 > DrRacket IDE의 간략한 개요를 보기 위해서는 [DrRacket 문서](https://docs.racket-lang.org/drracket/interface-essentials.html)를 참고 바랍니다.
 
 그림을 그리기 위해서는, 그림 라이브러리에서 슬라이드 쇼를 만드는 그림 함수를 불러와야 합니다. *정의 영역(definitions area)* 이라는 상단의 텍스트 영역 아래의 코드를 붙여넣어 주십시오:
-
-```
-#lang slideshow
-```
 
 <pre>
 <a href="https://docs.racket-lang.org/guide/Module_Syntax.html#%28part._hash-lang%29">#lang</a> <a href="https://docs.racket-lang.org/slideshow/index.html">slideshow</a>
@@ -371,6 +367,39 @@ Racket 개발자들은 일반적으로 새로운 프로그램과 라이브러리
 ---
 
 ## 매크로
+
+여기 시도해볼만한 다른 라이브러리가 있습니다:
+
+<pre>
+(<a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29">require</a> slideshow/code)
+
+> (<a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29">code</a> (<a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a> 10))
+<img src="pic/img0.png"/>
+</pre>
+
+원을 대신해서, 결과물은 수식으로 사용되었다면 원을 만들어내었을 코드 그림입니다. 바꾸어 말하면, [code](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29)는 함수가 아니라 그림을 만들어내는 구문 형식입니다; 괄호와 [code](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29) 사이에 있는 것은 수식이 아니라 [code](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29) 구문 형식에 조작된 부분입니다.
+
+이는 지난 섹션에서 [racket](https://docs.racket-lang.org/reference/index.html)이 [require](https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29)과 함수 호출 구문을 제공한다고 말했던 설명을 뒷받침해줍니다. 라이브러리는 함수처럼 값을 내보내는 데에 제한되지 않습니다; 라이브러리는 새로운 구문 형식을 정의할 수 있습니다. 이런 의미에서, Racket은 완전한 언어라고 할 수 없습니다; 언어를 확장하거나 완전히 새로운 언어를 만들어낼 수 있도록 언어를 구성하는 아이디어에 더 가깝습니다.
+
+새로운 구문 형식을 소개하는 한 가지 방법으로는 [define-syntax](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define-syntax%29%29)와 [syntax-rules](https://docs.racket-lang.org/reference/stx-patterns.html#%28form._%28%28lib._racket%2Fprivate%2Fstxcase-scheme..rkt%29._syntax-rules%29%29)를 함께 사용하는 게 있습니다:
+
+<pre>
+(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define-syntax%29%29">define-syntax</a> pict+code
+  (<a href="https://docs.racket-lang.org/reference/stx-patterns.html#%28form._%28%28lib._racket%2Fprivate%2Fstxcase-scheme..rkt%29._syntax-rules%29%29">syntax-rules</a> ()
+    [(pict+code expr)
+     (<a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29">hc-append</a> 10
+                expr
+                (<a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29">code</a> expr))]))
+
+> (pict+code (<a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a> 10))
+<img src="pic/img1.png"/>
+</pre>
+
+이러한 정의를 매크로(macro)라고 합니다. `(pict+code expr)`는 매크로를 사용하는 패턴입니다; 프로그램 속 패턴의 인스턴스(instances)는 해당하는 템플릿의 인스턴스인 `(hc-append 10 expr (code expr))`로 대체됩니다. 특히, `(pict+code (circle 10))`는 `expr`로서의 `(circle 10)`과 패턴이 맞으므로, `(hc-append 10 (circle 10) (code (circle 10)))`으로 대체됩니다.
+
+물론, 이러한 구문 확대에는 장단점이 있습니다: 새로운 언어를 만들어내면 원하는 것을 말하기 쉬워지지만, 다른 사람들이 이해하기 어려워집니다. 실제로 Racket 개발자들은 강연이나 논문에 Racket 코드를 꾸준히 포함하므로 이러한 것들을 연구하는 사람들은 [code](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29)에 대해 알 가치가 있습니다.
+
+사실, 당신은 이 [문서의 소스(source)](https://docs.racket-lang.org/quick/quick.scrbl)을 보고 싶을 수도 있습니다. 이 문서는 `#lang`로 시작하지만 Racket처럼 보이지 않을 것입니다; 그렇지만, 우리는 문서를 만들 때 Racket 프로그램으로 소스를 실행해가면서 작성했습니다. 우리는 Racket의 구문을 문서로 충분히 작성할 수 있을 정도로 확장하기 위해 [syntax-rules](https://docs.racket-lang.org/reference/stx-patterns.html#%28form._%28%28lib._racket%2Fprivate%2Fstxcase-scheme..rkt%29._syntax-rules%29%29)보다 많은 것을 사용해야 하지만, Racket의 구문 확장을 사용하는 것이 더 어려울 수도 있습니다.
 
 ---
 
