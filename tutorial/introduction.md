@@ -15,7 +15,7 @@
 1. [함수와 값 (Functions are Values)](#함수와-값)
 1. [렉시컬 스코프 (Lexical Scope)](#렉시컬-스코프)
 1. [리스트 (Lists)](#리스트)
-1. [미완] [모듈 (Modules)](#모듈)
+1. [모듈 (Modules)](#모듈)
 1. [미완] [매크로 (Macros)](#매크로)
 1. [미완] [객체 (Objects)](#객체)
 1. [미완] [다음 스텝](#다음-스텝)
@@ -340,19 +340,19 @@ Racket은 Lisp("LISt Processor"의 약자) 언어의 스타일을 많은 부분 
 <li>
 일부 모듈 컬렉션은 <em>패키지</em>로 분배됩니다. 패키지를 설치하기 위해서는 DrRacket의 <b>File</b> 메뉴에 있는 <b>Install Package...</b>를 사용하거나, <code>raco pkg</code> 커맨드 라인 툴을 사용할 수 있습니다. 예를 들어, <code>avl</code> 패키지를 설치하면 <a href="https://docs.racket-lang.org/avl/index.html">avl</a> 모듈을 사용할 수 있습니다.
 
-<br>Packages can be registered at https://pkgs.racket-lang.org/, or they can be installed directly from a Git repository, web site, file, or directory. See <a href="https://docs.racket-lang.org/pkg/index.html">Package Management in Racket</a> for more information about packages.
+패키지는 <a href="https://pkgs.racket-lang.org/">https://pkgs.racket-lang.org/</a>에서 등록하거나, 깃 저장소(Git repository), 웹사이트, 파일, 혹은 디렉토리에서 직접적으로 설치할 수 있습니다. 패키지에 대한 자세한 내용은 <a href="https://docs.racket-lang.org/pkg/index.html">Racket 패키지 관리</a>를 참고해주십시오.
 </li>
 
 <li>
-To save your definitions, use DrRacket’s [Save Definitions](https://docs.racket-lang.org/drracket/Menus.html#%28part._menu~3afile%29) menu item.
+정의를 저장하기 위해서는, DrRacket의 <a href="https://docs.racket-lang.org/drracket/Menus.html#%28part._menu~3afile%29">Save Definitions</a> 메뉴를 이용합니다.
 
-<br>Some modules live relative to other modules, without necessarily belonging to any particular collection or package. For example, in DrRacket, if you save your definitions so far in a file `quick.rkt` and add the line
+일부 모듈은 특정한 컬렉션이나 패키지에 속하는 대신 다른 모듈에 관하여 살기도 합니다. 예를 들어, DrRacket에서는, 지금까지 정리한 정의를 <code>quick.rkt</code> 파일에 저장한 후 아래의 라인을 추가하면
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._provide%29%29">provide</a> rainbow square)
 </pre>
 
-then you can open a new tab or window in DrRacket, type the new program `use.rkt` in the same directory as `quick.rkt`:
+DrRacket에서 새 탭이나 창을 열어 <code>quick.rkt</code>와 같은 디렉토리에 <code>use.rkt</code>라는 새로운 프로그램을 작성할 수 있습니다:
 
 <pre>
 <a href="https://docs.racket-lang.org/guide/Module_Syntax.html#%28part._hash-lang%29">#lang</a> <a href="https://docs.racket-lang.org/reference/index.html">racket</a>
@@ -360,11 +360,13 @@ then you can open a new tab or window in DrRacket, type the new program `use.rkt
 (rainbow (square 5))
 </pre>
 
-and when you run `use.rkt`, a rainbow list of squares is the output. Note that `use.rkt` is written using the initial import [racket](https://docs.racket-lang.org/reference/index.html), which does not supply any picture -- making functions itself -- but does provide [require](https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29) and the function-calling syntax.
+그리고 <code>use.rkt</code>를 실행하면 무지개 색의 정사각형 리스트가 반환됩니다. 여기서 주목할 점은 <code>use.rkt</code>는 <a href="https://docs.racket-lang.org/reference/index.html">racket</a>을 가져온다는 점인데, 이는 그림 만드는 함수를 제공하지 않지만 <a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29">require</a> 함수와 함수 호출 구문을 제공합니다.
 </li>
 </ul>
 
-Racketeers typically write new programs and libraries as modules that import each other through relative paths and collection-based paths. When a program or library developed this way seems useful to others, it can be registered as a package, especially if the implementation is hosted in a Git repository.
+Racket 개발자들은 일반적으로 새로운 프로그램과 라이브러리를 상대 경로와 수집 기반 경로를 통해 서로를 가져오는 모듈로서 작성합니다. 프로그램이나 라이브러리가 이러한 방식으로 개발되는 것이 유용해 보일 때, 이는 패키지로 등록될 수 있는데, 특히 구현이 깃 저장소에서 호스팅 되는 경우에 그렇습니다.
+
+> 예시에 쓰인 파일: [quick.rkt](racket/quick.rkt), [use.rkt](racket/use.rkt)
 
 ---
 
