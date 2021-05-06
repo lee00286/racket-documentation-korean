@@ -17,8 +17,8 @@
 1. [리스트 (Lists)](#리스트)
 1. [모듈 (Modules)](#모듈)
 1. [매크로 (Macros)](#매크로)
-1. [미완] [객체 (Objects)](#객체)
-1. [미완] [다음 스텝](#다음-스텝)
+1. [객체 (Objects)](#객체)
+1. [다음 스텝](#다음-스텝)
 
 ---
 
@@ -62,14 +62,14 @@
 <img src="pic/pict.png"/>
 </pre>
 
-[circle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29) 함수는 이미지 값을 가지는데, 숫자와 문자열과 비슷한 방식으로 결과를 프린트합니다. [circle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29) 함수의 인수는 원의 픽셀 사이즈를 결정합니다. [rectangle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._rectangle%29%29) 함수는 `circle`과 달리 두 개의 인수를 필요로 합니다:
+<code><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a></code> 함수는 이미지 값을 가지는데, 숫자와 문자열과 비슷한 방식으로 결과를 프린트합니다. <code><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a></code> 함수의 인수는 원의 픽셀 사이즈를 결정합니다. <code><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._rectangle%29%29">rectangle</a></code> 함수는 `circle`과 달리 두 개의 인수를 필요로 합니다:
 
 <pre>
 > (<a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._rectangle%29%29">rectangle</a> 10 20)
 <img src="pic/pict_2.png"/>
 </pre>
 
-[circle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29) 함수에 잘못된 개수의 인수를 넣어봅시다:
+<code><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a></code> 함수에 잘못된 개수의 인수를 넣어봅시다:
 
 ```
 > (circle 10 20)
@@ -85,18 +85,18 @@ circle: arity mismatch;
 
 노트: DrRacket은 에러를 발생시키는 수식을 분홍색으로 표시합니다 (하지만 이 문서에는 분홍색으로 표시되지 않았습니다).
 
-기본적인 그림 생성자(constructor)인 [circle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29)과 [rectangle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._rectangle%29%29) 외에도, 그림을 결합하는 [hc-append](https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29) 함수도 존재합니다. Racket에서 함수 호출을 하면 다음과 같습니다:
+기본적인 그림 생성자(constructor)인 <code><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a></code>과 <code><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._rectangle%29%29">rectangle</a></code> 외에도, 그림을 결합하는 <code><a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29">hc-append</a></code> 함수도 존재합니다. Racket에서 함수 호출을 하면 다음과 같습니다:
 
 <pre>
 > (<a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29">hc-append</a> (<a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a> 10) (<a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._rectangle%29%29">rectangle</a> 10 20))
 <img src="pic/pict_3.png"/>
 </pre>
 
-[hc-append](https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29)의 하이픈(`-`)은 식별자의 일부일 뿐입니다; `hc` 빼기 `append`가 아닙니다. 함수가 `h`로 시작하는 이유는 이 함수가 그림을 가로(horizontal)로 결합하기 때문이며, 다음 글자가 `c`인 이유는 결합되는 그림들이 세로로 중간에 정렬(centered)되기 때문입니다.
+<code><a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29">hc-append</a></code>의 하이픈(`-`)은 식별자의 일부일 뿐입니다; `hc` 빼기 `append`가 아닙니다. 함수가 `h`로 시작하는 이유는 이 함수가 그림을 가로(horizontal)로 결합하기 때문이며, 다음 글자가 `c`인 이유는 결합되는 그림들이 세로로 중간에 정렬(centered)되기 때문입니다.
 
-만약 어떤 다른 함수가 존재하는지 -- 이를테면 그림을 세로로 쌓거나 왼쪽 정렬되는 함수들 -- 궁금하다면 DrRacket에서 커서를 [hc-append](https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29)에 대고 F1키를 누르십시오. 그러면 브라우저 창이 열리고, [hc-append](https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29) 함수의 문서로 향하는 링크를 줄 것입니다. 주어진 링크를 클릭하면 당신은 다양한 함수를 볼 수 있을 것입니다.
+만약 어떤 다른 함수가 존재하는지 -- 이를테면 그림을 세로로 쌓거나 왼쪽 정렬되는 함수들 -- 궁금하다면 DrRacket에서 커서를 <code><a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29">hc-append</a></code>에 대고 F1키를 누르십시오. 그러면 브라우저 창이 열리고, <code><a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29">hc-append</a></code> 함수의 문서로 향하는 링크를 줄 것입니다. 주어진 링크를 클릭하면 당신은 다양한 함수를 볼 수 있을 것입니다.
 
-만약 이 문서를 HTML 방식으로 보고 있다면, [hc-append](https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29)을 클릭하거나 이 튜토리얼에서 사용한 임포트(import)된 식별자를 사용해도 됩니다.
+만약 이 문서를 HTML 방식으로 보고 있다면, <code><a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29">hc-append</a></code>를 클릭하거나 이 튜토리얼에서 사용한 임포트(import)된 식별자를 사용해도 됩니다.
 
 ---
 
@@ -121,11 +121,11 @@ circle: arity mismatch;
 <img src="pic/pict_6.png"/>
 </pre>
 
-보다시피, [hc-append](https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29) 함수는 그림 인자 앞에 숫자 인자 넣는 것을 허용하고, 그림 인자를 개수 상관없이 허용합니다. 만약 숫자 인자를 적는다면, 그림 사이의 거리가 명시됩니다.
+보다시피, <code><a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29">hc-append</a></code> 함수는 그림 인자 앞에 숫자 인자 넣는 것을 허용하고, 그림 인자를 개수 상관없이 허용합니다. 만약 숫자 인자를 적는다면, 그림 사이의 거리가 명시됩니다.
 
-[define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)의 `c`와 `r`에 대한 평가는 정의 영역 대신 상호 영역에서 이루어질 수도 있습니다. 하지만 정의 영역에서 실질적인 프로그램이 이루어지며 -- 이 영역에서 파일이 저장됩니다 -- 상호 영역은 일시적인 탐구나 디버깅 목적으로 활용됩니다.
+<code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>의 `c`와 `r`에 대한 평가는 정의 영역 대신 상호 영역에서 이루어질 수도 있습니다. 하지만 정의 영역에서 실질적인 프로그램이 이루어지며 -- 이 영역에서 파일이 저장됩니다 -- 상호 영역은 일시적인 탐구나 디버깅 목적으로 활용됩니다.
 
-프로그램에 정의 함수(function definition)를 추가해봅시다. 정의 함수는 이전의 예시처럼 [define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)을 사용하는데, 대신 함수 이름 앞에 괄호를 열어주며 함수 인수 뒤에 괄호를 닫아줍니다:
+프로그램에 정의 함수(function definition)를 추가해봅시다. 정의 함수는 이전의 예시처럼 <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>을 사용하는데, 대신 함수 이름 앞에 괄호를 열어주며 함수 인수 뒤에 괄호를 닫아줍니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> (square n)
@@ -147,7 +147,7 @@ circle: arity mismatch;
 
 ## 로컬 바인딩
 
-[define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)은 로컬 바인딩을 생성하기 위해 사용할 수 있습니다. 예를 들어, 함수 본체에 사용할 수 있습니다:
+<code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>은 로컬 바인딩을 생성하기 위해 사용할 수 있습니다. 예를 들어, 함수 본체에 사용할 수 있습니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> (four p)
@@ -158,7 +158,7 @@ circle: arity mismatch;
 <img src="pic/pict_8.png"/>
 </pre>
 
-일반적으로, Racket 개발자들은 로컬 바인딩을 위해 [let](https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29)나 [let*](https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%2A%29%29)을 사용합니다. 이의 장점은 수식의 어느 위치에나 사용할 수 있다는 점입니다. 또한, 많은 식별자에 각각 [define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)을 필요로 하는 대신 식별자를 한 번에 묶어줍니다:
+일반적으로, Racket 개발자들은 로컬 바인딩을 위해 <code><a href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29">let</a></code>나 <code><a href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%2A%29%29">let*</a></code>을 사용합니다. 이의 장점은 수식의 어느 위치에나 사용할 수 있다는 점입니다. 또한, 많은 식별자에 각각 <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>을 필요로 하는 대신 식별자를 한 번에 묶어줍니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> (checker p1 p2)
@@ -171,7 +171,7 @@ circle: arity mismatch;
 <img src="pic/pict_9.png"/>
 </pre>
 
-[let](https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29)은 많은 식별자를 동시에 묶어주므로, 바인딩(bindings)들은 서로 언급이 불가합니다. 반면, [let*](https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%2A%29%29)은 이전에 생성된 바인딩을 사용할 수 있습니다:
+<code><a href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29">let</a></code>은 많은 식별자를 동시에 묶어주므로, 바인딩(bindings)들은 서로 언급이 불가합니다. 반면, <code><a href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%2A%29%29">let*</a></code>은 이전에 생성된 바인딩을 사용할 수 있습니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> (checkerboard p)
@@ -189,14 +189,14 @@ circle: arity mismatch;
 
 ## 함수와 값
 
-[circle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29) 함수를 호출하는 대신 [circle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29)을 수식으로서 평가해봅시다:
+<code><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a></code> 함수를 호출하는 대신 <code><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a></code>을 수식으로서 평가해봅시다:
 
 <pre>
 > <a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a>
 #&lt;procedure:circle&gt;
 </pre>
 
-수식자 [circle](https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29)은 함수로 기능하는데(프로시저(procedure)라고도 알려져 있습니다), 이는 `c`가 `circle`로 기능하는 것과 같습니다. 원 그림과는 달리 함수를 온전히 프린트하기는 쉽지 않은 일이라, DrRacket은 그냥 `#<procedure:circle>`를 프린트합니다.
+수식자 <code><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a></code>은 함수로 기능하는데(프로시저(procedure)라고도 알려져 있습니다), 이는 `c`가 `circle`로 기능하는 것과 같습니다. 원 그림과는 달리 함수를 온전히 프린트하기는 쉽지 않은 일이라, DrRacket은 그냥 `#<procedure:circle>`를 프린트합니다.
 
 이 예시는 숫자와 그림처럼 함수도 값이라는 것을 보여줍니다 (비록 프린트는 잘 안 되지만요). 함수가 값이기 때문에, 함수를 다른 함수의 인수로 정의하는 것도 가능합니다:
 
@@ -210,16 +210,16 @@ circle: arity mismatch;
 <img src="pic/pict_12.png"/>
 </pre>
 
-함수를 받아들이는 함수를 호출할 때, 가끔 인수로 사용된 함수가 다른 곳에서는 필요 없는 경우가 있습니다. 함수를 매번 [define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)으로 정의하는 건 번거로운 일인데, 왜냐하면 이름을 만들어내야 하고 함수의 정의를 넣을 곳을 찾아야 하기 때문입니다. 이를 대체하는 방법으로는, [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29)으로 익명 함수(anonymous function)를 만들 수 있습니다:
+함수를 받아들이는 함수를 호출할 때, 가끔 인수로 사용된 함수가 다른 곳에서는 필요 없는 경우가 있습니다. 함수를 매번 <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>으로 정의하는 건 번거로운 일인데, 왜냐하면 이름을 만들어내야 하고 함수의 정의를 넣을 곳을 찾아야 하기 때문입니다. 이를 대체하는 방법으로는, <code><a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a></code>으로 익명 함수(anonymous function)를 만들 수 있습니다:
 
 <pre>
 > (series (<a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a> (size) (checkerboard (square size))))
 <img src="pic/pict_13.png"/>
 </pre>
 
-[lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29) 뒤의 괄호 쳐진 이름들은 함수의 인수이며, 수식들은 함수 본체입니다. "함수(function)"와 "프로시저(procedure)" 대신 "lambda"라는 단어를 사용하는 것은 Racket의 역사와 문화의 일부입니다.
+<code><a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a></code> 뒤의 괄호 쳐진 이름들은 함수의 인수이며, 수식들은 함수 본체입니다. "함수(function)"와 "프로시저(procedure)" 대신 "lambda"라는 단어를 사용하는 것은 Racket의 역사와 문화의 일부입니다.
 
-함수에서의 [define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)은 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29)를 값으로서 사용하는 간단한 [define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)의 간단한 버전입니다. 예를 들어, `series`의 정의는 아래와 같이 쓸 수 있습니다:
+함수에서의 <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>은 <code><a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a></code>를 값으로서 사용하는 간단한 <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>의 간단한 버전입니다. 예를 들어, `series`의 정의는 아래와 같이 쓸 수 있습니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> series
@@ -227,15 +227,15 @@ circle: arity mismatch;
     (<a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29">hc-append</a> 4 (mk 5) (mk 10) (mk 20))))
 </pre>
 
-대부분의 Racket 개발자들은 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29)로 확장하는 것보다 [define](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29)를 사용하는 빠른 함수 형식을 선호합니다.
+대부분의 Racket 개발자들은 <code><a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a></code>로 확장하는 것보다 <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>를 사용하는 빠른 함수 형식을 선호합니다.
 
 ---
 
 ## 렉시컬 스코프
 
-Racket은 렉시컬 스코프(lexically scoped)인 언어로서, 식별자가 수식으로 사용될 때, 수식의 텍스트 환경이 식별자의 바인딩을 결정한다는 의미입니다. 이 규칙은 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29) 본체의 식별자를 포함한 다른 어느 곳에서도 적용됩니다.
+Racket은 렉시컬 스코프(lexically scoped)인 언어로서, 식별자가 수식으로 사용될 때, 수식의 텍스트 환경이 식별자의 바인딩을 결정한다는 의미입니다. 이 규칙은 <code><a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a></code> 본체의 식별자를 포함한 다른 어느 곳에서도 적용됩니다.
 
-아래의 `rgb-series` 함수에서는, 각 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29)에서 `mk`를 사용하는 것은 `rgb-series`의 인자를 의미하는데, 왜냐하면 텍스트 적인 범위에 있는 바인딩이기 때문입니다:
+아래의 `rgb-series` 함수에서는, 각 <code><a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a></code>에서 `mk`를 사용하는 것은 `rgb-series`의 인자를 의미하는데, 왜냐하면 텍스트 적인 범위에 있는 바인딩이기 때문입니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> (rgb-series mk)
@@ -273,7 +273,7 @@ Racket은 렉시컬 스코프(lexically scoped)인 언어로서, 식별자가 �
 
 Racket은 Lisp("LISt Processor"의 약자) 언어의 스타일을 많은 부분 상속받았고, 리스트는 Racket의 중요한 부분으로 남아 있습니다.
 
-[list](https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29) 함수는 인수를 숫자 상관없이 받아들이며 지정된 값을 포함하는 리스트를 반환합니다:
+<code><a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29">list</a></code> 함수는 인수를 숫자 상관없이 받아들이며 지정된 값을 포함하는 리스트를 반환합니다:
 
 <pre>
 > (<a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29">list</a> "red" "green" "blue")
@@ -284,7 +284,7 @@ Racket은 Lisp("LISt Processor"의 약자) 언어의 스타일을 많은 부분 
 
 보다시피, 리스트는 홑따옴표(single quote) 뒤에 괄호로 둘러싼 리스트 요소를 프린트합니다. 여기서 혼동이 생길 수 있는데, 왜냐하면 괄호는 <code>(<a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29">circle</a> 10)</code>와 같은 수식과 `'("red" "green" "blue")` 같은 프린트 값 모두에서 사용되기 때문입니다. [다른 곳에서](https://docs.racket-lang.org/guide/Pairs__Lists__and_Racket_Syntax.html#%28part._quoting-lists%29) 논의되었듯이, 따옴표가 가장 큰 차이점입니다. 이 차이점을 강조하기 위해, 문서와 DrRacket에서는 결과로서의 괄호는 파란색으로 프린트합니다.
 
-만약 리스트가 있다면, 당신은 결과적으로 리스트 요소의 각각에 무언가를 하고자 할 것입니다. [map](https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29) 함수는 리스트와 함수를 가져가서 리스트의 각 요소에 함수를 적용시킵니다; 그리고 함수의 결과물을 결합해 새로운 리스트를 반환합니다:
+만약 리스트가 있다면, 당신은 결과적으로 리스트 요소의 각각에 무언가를 하고자 할 것입니다. <code><a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29">map</a></code> 함수는 리스트와 함수를 가져가서 리스트의 각 요소에 함수를 적용시킵니다; 그리고 함수의 결과물을 결합해 새로운 리스트를 반환합니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> (rainbow p)
@@ -296,14 +296,14 @@ Racket은 Lisp("LISt Processor"의 약자) 언어의 스타일을 많은 부분 
 '(<img src="pic/pict_20.png"/><img src="pic/pict_21.png"/><img src="pic/pict_22.png"/><img src="pic/pict_23.png"/><img src="pic/pict_24.png"/><img src="pic/pict_25.png"/>)
 </pre>
 
-리스트에 활용할 수 있는 또 다른 함수에는 [apply](https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29)가 있습니다. 이 함수는 [map](https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29)과 비슷하게 함수와 리스트를 필요로 하지만, [apply](https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29)에게 주어진 함수는 각 인수가 아닌 모든 인수에 한 번에 적용됩니다. [apply](https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29) 함수는 [vc-append](https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29)처럼 인수의 개수에 제한이 없는 함수에 유용하게 쓰입니다.
+리스트에 활용할 수 있는 또 다른 함수에는 <code><a href="https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29">apply</a></code>가 있습니다. 이 함수는 <code><a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29">map</a></code>과 비슷하게 함수와 리스트를 필요로 하지만, <code><a href="https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29">apply</a></code>에게 주어진 함수는 각 인수가 아닌 모든 인수에 한 번에 적용됩니다. <code><a href="https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29">apply</a></code> 함수는 <code><a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29">vc-append</a></code>처럼 인수의 개수에 제한이 없는 함수에 유용하게 쓰입니다.
 
 <pre>
 > (<a href="https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29">apply</a> <a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29">vc-append</a> (rainbow (square 5)))
 <img src="pic/pict_26.png"/>
 </pre>
 
-노트: <code>(<a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29">vc-append</a> (rainbow (square 5)))</code>에서는 [vc-append](https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29)가 리스트를 인수로 받아들이지 않으므로 실행되지 않을 것입니다; 이 함수는 아무 개수의 그림 인수를 받아들입니다. [apply](https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29) 함수는 많은 인수를 받아들이거나 모든 인수를 하나의 값으로 사용하고자 하는 함수 사이의 간격을 연결해줍니다.
+노트: <code>(<a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29">vc-append</a> (rainbow (square 5)))</code>에서는 <code><a href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29">vc-append</a></code>가 리스트를 인수로 받아들이지 않으므로 실행되지 않을 것입니다; 이 함수는 아무 개수의 그림 인수를 받아들입니다. <code><a href="https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29">apply</a></code> 함수는 많은 인수를 받아들이거나 모든 인수를 하나의 값으로 사용하고자 하는 함수 사이의 간격을 연결해줍니다.
 
 ---
 
@@ -405,6 +405,52 @@ Racket 개발자들은 일반적으로 새로운 프로그램과 라이브러리
 
 ## 객체
 
+객체(Object) 시스템은 Racket 사용자가 배우고 사용하는데 가치가 있는 정교한 언어 확장의 또다른 예시입니다. 객체는 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29)가 있는 경우에도 함수보다 나을 때가 있으며, 객체는 GUI에서 특히 잘 작동합니다. Racket의 GUI와 그래픽 시스템을 위한 API는 객체와 클래스(classes)로 표현됩니다.
+
+클래스 시스템은 [racket/class](https://docs.racket-lang.org/reference/mzlib_class.html) 라이브러리에 의해 구현되며 [racket/gui/base](https://docs.racket-lang.org/gui/index.html), 라이브러리는 GUI와 그림 그리는 클래스를 제공합니다. 관례상, 클래스는 `%`로 끝나는 이름을 가집니다:
+
+<pre>
+(<a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29">require</a> racket/class
+         racket/gui/base)
+(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> f (<a href="https://docs.racket-lang.org/reference/objcreation.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._new%29%29">new</a> <a href="https://docs.racket-lang.org/gui/frame_.html">frame%</a> [label "My Art"]
+                      [width 300]
+                      [height 300]
+                      [alignment '(center center)]))
+
+> (<a href="https://docs.racket-lang.org/reference/ivaraccess.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._send%29%29">send</a> f show #t)
+</pre>
+
+[new](https://docs.racket-lang.org/reference/objcreation.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._new%29%29) 형식은 클래스의 객체를 만드는데, 여기서 `label`과 `width`와 같은 초기화 인수(initialization arguments)는 이름으로 제공됩니다. [send](https://docs.racket-lang.org/reference/ivaraccess.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._send%29%29) 형식은 `show`와 같은 객체의 메소드(method)와 메소드의 인수를 호출합니다; 이 경우 인수 `#t`는 불린(boolean) 상수 `“true”`입니다.
+
+[slideshow](https://docs.racket-lang.org/slideshow/index.html)로 생성된 그림은 graphics toolbox's drawing commands를 사용하여 그림을 drawing context(예를 들어 프레임의 캔버스)로 렌더링하는 함수를 캡슐화합니다. [slideshow](https://docs.racket-lang.org/slideshow/index.html)의 [make-pict-drawer](https://docs.racket-lang.org/pict/Rendering.html#%28def._%28%28lib._pict%2Fmain..rkt%29._make-pict-drawer%29%29) 함수는 그림의 그림 그리는 함수를 드러냅니다. 우리는 캔버스 안에 그림을 그리기 위해 캔버스-페인팅 콜백(canvas-painting callback)의 [make-pict-drawer](https://docs.racket-lang.org/pict/Rendering.html#%28def._%28%28lib._pict%2Fmain..rkt%29._make-pict-drawer%29%29)을 사용할 수 있습니다:
+
+<pre>
+(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> (add-drawing p)
+  (<a href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29">let</a> ([drawer (<a href="https://docs.racket-lang.org/pict/Rendering.html#%28def._%28%28lib._pict%2Fmain..rkt%29._make-pict-drawer%29%29">make-pict-drawer</a> p)])
+    (<a href="https://docs.racket-lang.org/reference/objcreation.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._new%29%29">new</a> <a href="https://docs.racket-lang.org/gui/canvas_.html">canvas%</a> [parent f]
+                 [style '(border)]
+                 [paint-callback (<a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a> (self <a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._dc%29%29">dc</a>)
+                                    (drawer <a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._dc%29%29">dc</a> 0 0))])))
+> (add-drawing (pict+code (circle 10)))
+#(struct:object:canvas% ...)
+> (add-drawing (colorize (filled-flash 50 30) "yellow"))
+#(struct:object:canvas% ...)
+</pre>
+
+<img src="pic/img2.png"/>
+
+각 캔버스는 프레임의 동일한 부분을 채우기 위해 늘어나는데, 왜냐하면 이는 프레임이 기본적으로 하위 목록을 관리하는 방법이기 때문입니다.
+
 ---
 
 ## 다음 스텝
+
+이 Racket 도입부에서는 의도적으로 Lisp나 스키마(Scheme)를 소개하고 구별하는 전통적인 방법을 피하고자 했습니다: prefix arithmetic notation, 심볼(symbols), 인용구(quoting) 및 quasiquoting 리스트, [eval](https://docs.racket-lang.org/reference/eval.html#%28def._%28%28quote._~23~25kernel%29._eval%29%29), first-class continuations, 그리고 모든 구문이 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29)라고 가장하는 아이디어가 이에 해당합니다. 이들이 모두 Racket의 일부인 한편, 일상적인 Racket 프로그래밍의 주요 요소는 아닙니다.
+
+대신, Racket 개발자들은 보통 함수, 레코드(records), 객체, 예외(exceptions), 정규표현식(regular expressions), 모듈, 그리고 스레드(threads)를 포함한 프로그램을 만듭니다. 즉, Racket은 미니멀리스트 언어 -- 스키마가 주로 이렇게 묘사됩니다 -- 대신 광범위한 라이브러리와 툴을 가진 풍부한 언어(rich language)를 제공합니다.
+
+만약 개발이 처음이거나 배우기 위해 교재를 둘러볼 인내심이 있다면, <b><a href="http://htdp.org/">How to Design Programs</a></b>를 읽는 걸 추천합니다. 만약 이미 읽었거나 다음 책을 알고 싶다면, [Continue: Racket의 웹 어플리케이션](https://docs.racket-lang.org/continue/index.html) 섹션을 확인해주십시오.
+
+숙련된 개발자로서 그림 대신 시스템 중심(systems-oriented)의 관점에서 Racket을 둘러보고 싶다면, [More: Racket을 이용한 시스템 프로그래밍](https://docs.racket-lang.org/more/index.html)를 추천합니다.
+
+전체적인 Racket 언어와 툴을 깊이있게 공부하고 싶다면 [The Racket Guide](https://docs.racket-lang.org/guide/index.html)으로 넘어가십시오.

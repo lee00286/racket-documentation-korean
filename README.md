@@ -13,6 +13,6 @@
 [미완] [Racket 컨닝페이퍼 (Racket Cheat Sheet)](/racket-cheat-sheet.md)
 
 ### 튜토리얼
-- [미완] [Quick: 그림과 함께 Racket 시작하기](/tutorial/introduction.md)
-- Continue: Web Applications in Racket
-- More: Systems Programming with Racket
+- [Quick: 그림과 함께 Racket 시작하기](/tutorial/introduction.md)
+- Continue: Racket의 웹 어플리케이션
+- More: Racket을 이용한 시스템 프로그래밍
