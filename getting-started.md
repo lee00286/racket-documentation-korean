@@ -1,4 +1,4 @@
-# 시작하기 (Getting Started)
+# 시작하기 (Getting Started) ([원문](https://docs.racket-lang.org/getting-started/index.html))
 
 Racket을 사용하기 전, 웹페이지에서 [다운로드](https://racket-lang.org/download/) 후 설치해야 합니다. 만약 초심자이거나 graphical environment을 사용해야 할 경우, DrRacket executable를 실행합니다. 그렇지 않을 경우, racket executable은 커맨드라인 Read-Eval-Print-Loop([REPL](https://docs.racket-lang.org/guide/intro.html#%28tech._repl%29))을 실행할 것입니다.
 
@@ -11,13 +11,13 @@ Racket을 사용하기 전, 웹페이지에서 [다운로드](https://racket-lan
 개발이 처음이거나 배우기 위해 교재를 둘러볼 인내심이 있는 사람들에게 추천합니다:
 
 - [How to Design Programs, Second Edition](http://htdp.org/): 시작하기에 좋은 교재입니다.
-- [Continue: Web Applications in Racket](https://docs.racket-lang.org/continue/index.html): 모듈(module)과 웹 어플리케이션(web application)을 소개해줍니다.
+- [Continue: Racket의 웹 어플리케이션](/tutorial/continue.md): 모듈(module)과 웹 어플리케이션(web application)을 소개해줍니다.
 - [Racket 가이드](https://docs.racket-lang.org/guide/index.html): 교재의 learning-oriented languages에서 설명하지 않은 Racket 언어의 나머지 부분을 설명합니다. 교재에서 함수형 프로그래(functional programming)을 이미 배웠으므로 가이드의 챕터 1과 2는 쉽게 넘어갈 수 있을 겁니다.
 
 개발자이거나 시간이 많지 않은 사람들에게 추천합니다:
 
-- [Quick: 그림과 함께 Racket 시작하기](/tutorial/introduction.md): Racket의 맛보기입니다.
-- [More: Systems Programming with Racket](https://docs.racket-lang.org/more/index.html): 더 빠르고 깊게 Racket을 알아봅니다. 지나치다는 생각이 들면 그냥 넘어가도 괜찮습니다.
+- [Quick: 그림과 함께 Racket 시작하기](/tutorial/quick.md): Racket의 맛보기입니다.
+- [More: Racket을 이용한 시스템 프로그래밍](/tutorial/more.md): 더 빠르고 깊게 Racket을 알아봅니다. 지나치다는 생각이 들면 그냥 넘어가도 괜찮습니다.
 - [Racket 가이드](https://docs.racket-lang.org/guide/index.html): Racket의 기초에 대한 튜토리얼으로 시작하여 전체적인 Racket 언어에 대해 설명합니다.
 
 위의 두 추천 목록은 서로 다른 내용을 포함하므로 섞어서 공부해도 상관없습니다.
