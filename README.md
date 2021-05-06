@@ -19,4 +19,4 @@
 
 ### Racket 언어와 핵심 라이브러리
 - [미완] Racket 가이드
-- [미완] <b><a href="/racket-reference/racket-reference.md">Racket 참고 문헌</a></b>
+- [미완] <b><a href="/racket-reference/racket-reference.html">Racket 참고 문헌</a></b>
