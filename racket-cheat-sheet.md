@@ -1,4 +1,4 @@
-# Racket 컨닝페이퍼 (Racket Cheat Sheet)
+# Racket 컨닝페이퍼 (Racket Cheat Sheet) ([원문](https://docs.racket-lang.org/racket-cheat/index.html))
 
 ## 목차
 1. [기본 (Essentials)](#기본)

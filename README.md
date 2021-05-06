@@ -2,7 +2,7 @@
 
 [라켓 공식 문서](https://docs.racket-lang.org/)의 한국어 번역본을 찾을 수가 없어 번역하게 되었습니다. 번역 오류나 요청사항은 이슈에 남겨주세요.
 
-마지막 번역 일자: 2021년 5월 5일 (수)
+마지막 번역 일자: 2021년 5월 6일 (목)
 
 ---
 
@@ -13,6 +13,10 @@
 [미완] [Racket 컨닝페이퍼 (Racket Cheat Sheet)](/racket-cheat-sheet.md)
 
 ### 튜토리얼
-- [Quick: 그림과 함께 Racket 시작하기](/tutorial/introduction.md)
-- Continue: Racket의 웹 어플리케이션
-- More: Racket을 이용한 시스템 프로그래밍
+- [Quick: 그림과 함께 Racket 시작하기](/tutorial/quick.md)
+- [미완] [Continue: Racket의 웹 어플리케이션](/tutorial/continue.md)
+- [미완] [More: Racket을 이용한 시스템 프로그래밍](/tutorial/more.md)
+
+### Racket 언어와 핵심 라이브러리
+- [미완] Racket 가이드
+- [미완] <b><a href="/racket-reference/racket-reference">Racket 참고 문헌</a></b>

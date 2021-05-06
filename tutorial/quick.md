@@ -1,4 +1,4 @@
-# Quick: 그림과 함께 Racket 시작하기
+# Quick: 그림과 함께 Racket 시작하기 ([원문](https://docs.racket-lang.org/quick/index.html))
 
 이 튜토리얼은 그림 그리는 라이브러리를 통해 Racket 프로그래밍 언어에 대한 간단한 맛보기를 진행합니다. 혹여 Racket을 예술적인 목적으로 사용하려는 게 아니더라도 그림 라이브러리는 흥미롭고 깨달음을 주는 예시를 제공합니다. 결국에는 하나의 그림이 오백 번의 `“hello world”` 만큼의 가치를 지닐 것입니다.
 
@@ -315,9 +315,9 @@ Racket은 Lisp("LISt Processor"의 약자) 언어의 스타일을 많은 부분 
 <a href="https://docs.racket-lang.org/guide/Module_Syntax.html#%28part._hash-lang%29">#lang</a> <a href="https://docs.racket-lang.org/slideshow/index.html">slideshow</a>
 </pre>
 
-정의 창에 입력한 모든 코드는 모듈 안에 있습니다. 게다가, 이 모듈은 시작할 때 [slideshow](https://docs.racket-lang.org/slideshow/index.html)에서 지정된 모든 모듈을 가져오는데, 이 모듈은 그림을 만드는 함수와 [list](https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29)와 [map](https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29)과 같이 자주 쓰이는 함수를 내보냅니다.
+정의 창에 입력한 모든 코드는 모듈 안에 있습니다. 게다가, 이 모듈은 시작할 때 <code><a href="https://docs.racket-lang.org/slideshow/index.html">slideshow</a></code>에서 지정된 모든 모듈을 가져오는데, 이 모듈은 그림을 만드는 함수와 <code><a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29">list</a></code>와 <code><a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29">map</a></code>과 같이 자주 쓰이는 함수를 내보냅니다.
 
-추가로 라이브러리를 가져오기 위해서는, [require](https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29)를 사용합니다. 예를 들어, [pict/flash](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28mod-path._pict%2Fflash%29) 라이브러리는 [filled-flash](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28def._%28%28lib._pict%2Fflash..rkt%29._filled-flash%29%29) 함수를 제공합니다:
+추가로 라이브러리를 가져오기 위해서는, <code><a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29">require</a></code>를 사용합니다. 예를 들어, <code><a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28mod-path._pict%2Fflash%29">pict/flash</a></code> 라이브러리는 <code><a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28def._%28%28lib._pict%2Fflash..rkt%29._filled-flash%29%29">filled-flash</a></code> 함수를 제공합니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29">require</a> pict/flash)
@@ -330,11 +330,11 @@ Racket은 Lisp("LISt Processor"의 약자) 언어의 스타일을 많은 부분 
 
 <ul>
 <li>
-일부 모듈은 Racket distribution에 패키징되어있거나 계층 <em>컬렉션</em>에 설치되어있습니다. 예를 들어, <a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28mod-path._pict%2Fflash%29">pict/flash</a> 모듈의 이름은 "<code>pict</code> 컬렉션에 위치한 <code>flash.rkt</code> 파일에서 구현된 모듈"이라는 뜻입니다. 모듈 이름에 슬래시(slash)가 없을 때는, 그 모듈은 <code>main.rkt</code> 파일에서 구현되었음을 나타냅니다.
+일부 모듈은 Racket distribution에 패키징되어있거나 계층 <em>컬렉션</em>에 설치되어있습니다. 예를 들어, <code><a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28mod-path._pict%2Fflash%29">pict/flash</a></code> 모듈의 이름은 "<code>pict</code> 컬렉션에 위치한 <code>flash.rkt</code> 파일에서 구현된 모듈"이라는 뜻입니다. 모듈 이름에 슬래시(slash)가 없을 때는, 그 모듈은 <code>main.rkt</code> 파일에서 구현되었음을 나타냅니다.
 </li>
 
 <li>
-일부 모듈 컬렉션은 <em>패키지</em>로 분배됩니다. 패키지를 설치하기 위해서는 DrRacket의 <b>File</b> 메뉴에 있는 <b>Install Package...</b>를 사용하거나, <code>raco pkg</code> 커맨드 라인 툴을 사용할 수 있습니다. 예를 들어, <code>avl</code> 패키지를 설치하면 <a href="https://docs.racket-lang.org/avl/index.html">avl</a> 모듈을 사용할 수 있습니다.
+일부 모듈 컬렉션은 <em>패키지</em>로 분배됩니다. 패키지를 설치하기 위해서는 DrRacket의 <b>File</b> 메뉴에 있는 <b>Install Package...</b>를 사용하거나, <code>raco pkg</code> 커맨드 라인 툴을 사용할 수 있습니다. 예를 들어, <code>avl</code> 패키지를 설치하면 <code><a href="https://docs.racket-lang.org/avl/index.html">avl</a></code> 모듈을 사용할 수 있습니다.
 
 패키지는 <a href="https://pkgs.racket-lang.org/">https://pkgs.racket-lang.org/</a>에서 등록하거나, 깃 저장소(Git repository), 웹사이트, 파일, 혹은 디렉토리에서 직접적으로 설치할 수 있습니다. 패키지에 대한 자세한 내용은 <a href="https://docs.racket-lang.org/pkg/index.html">Racket 패키지 관리</a>를 참고해주십시오.
 </li>
@@ -356,7 +356,7 @@ DrRacket에서 새 탭이나 창을 열어 <code>quick.rkt</code>와 같은 디�
 (rainbow (square 5))
 </pre>
 
-그리고 <code>use.rkt</code>를 실행하면 무지개 색의 정사각형 리스트가 반환됩니다. 여기서 주목할 점은 <code>use.rkt</code>는 <a href="https://docs.racket-lang.org/reference/index.html">racket</a>을 가져온다는 점인데, 이는 그림 만드는 함수를 제공하지 않지만 <a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29">require</a> 함수와 함수 호출 구문을 제공합니다.
+그리고 <code>use.rkt</code>를 실행하면 무지개 색의 정사각형 리스트가 반환됩니다. 여기서 주목할 점은 <code>use.rkt</code>는 <a href="https://docs.racket-lang.org/reference/index.html">racket</a>을 가져온다는 점인데, 이는 그림 만드는 함수를 제공하지 않지만 <code><a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29">require</a></code> 함수와 함수 호출 구문을 제공합니다.
 </li>
 </ul>
 
@@ -377,11 +377,11 @@ Racket 개발자들은 일반적으로 새로운 프로그램과 라이브러리
 <img src="pic/img0.png"/>
 </pre>
 
-원을 대신해서, 결과물은 수식으로 사용되었다면 원을 만들어내었을 코드 그림입니다. 바꾸어 말하면, [code](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29)는 함수가 아니라 그림을 만들어내는 구문 형식입니다; 괄호와 [code](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29) 사이에 있는 것은 수식이 아니라 [code](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29) 구문 형식에 조작된 부분입니다.
+원을 대신해서, 결과물은 수식으로 사용되었다면 원을 만들어내었을 코드 그림입니다. 바꾸어 말하면, <code><a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29">code</a></code>는 함수가 아니라 그림을 만들어내는 구문 형식입니다; 괄호와 <code><a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29">code</a></code> 사이에 있는 것은 수식이 아니라 <code><a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29">code</a></code> 구문 형식에 조작된 부분입니다.
 
-이는 지난 섹션에서 [racket](https://docs.racket-lang.org/reference/index.html)이 [require](https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29)과 함수 호출 구문을 제공한다고 말했던 설명을 뒷받침해줍니다. 라이브러리는 함수처럼 값을 내보내는 데에 제한되지 않습니다; 라이브러리는 새로운 구문 형식을 정의할 수 있습니다. 이런 의미에서, Racket은 완전한 언어라고 할 수 없습니다; 언어를 확장하거나 완전히 새로운 언어를 만들어낼 수 있도록 언어를 구성하는 아이디어에 더 가깝습니다.
+이는 지난 섹션에서 [racket](https://docs.racket-lang.org/reference/index.html)이 <code><a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29">require</a></code>과 함수 호출 구문을 제공한다고 말했던 설명을 뒷받침해줍니다. 라이브러리는 함수처럼 값을 내보내는 데에 제한되지 않습니다; 라이브러리는 새로운 구문 형식을 정의할 수 있습니다. 이런 의미에서, Racket은 완전한 언어라고 할 수 없습니다; 언어를 확장하거나 완전히 새로운 언어를 만들어낼 수 있도록 언어를 구성하는 아이디어에 더 가깝습니다.
 
-새로운 구문 형식을 소개하는 한 가지 방법으로는 [define-syntax](https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define-syntax%29%29)와 [syntax-rules](https://docs.racket-lang.org/reference/stx-patterns.html#%28form._%28%28lib._racket%2Fprivate%2Fstxcase-scheme..rkt%29._syntax-rules%29%29)를 함께 사용하는 게 있습니다:
+새로운 구문 형식을 소개하는 한 가지 방법으로는 <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define-syntax%29%29">define-syntax</a></code>와 <code><a href="https://docs.racket-lang.org/reference/stx-patterns.html#%28form._%28%28lib._racket%2Fprivate%2Fstxcase-scheme..rkt%29._syntax-rules%29%29">syntax-rules</a></code>를 함께 사용하는 게 있습니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define-syntax%29%29">define-syntax</a> pict+code
@@ -397,17 +397,17 @@ Racket 개발자들은 일반적으로 새로운 프로그램과 라이브러리
 
 이러한 정의를 매크로(macro)라고 합니다. `(pict+code expr)`는 매크로를 사용하는 패턴입니다; 프로그램 속 패턴의 인스턴스(instances)는 해당하는 템플릿의 인스턴스인 `(hc-append 10 expr (code expr))`로 대체됩니다. 특히, `(pict+code (circle 10))`는 `expr`로서의 `(circle 10)`과 패턴이 맞으므로, `(hc-append 10 (circle 10) (code (circle 10)))`으로 대체됩니다.
 
-물론, 이러한 구문 확대에는 장단점이 있습니다: 새로운 언어를 만들어내면 원하는 것을 말하기 쉬워지지만, 다른 사람들이 이해하기 어려워집니다. 실제로 Racket 개발자들은 강연이나 논문에 Racket 코드를 꾸준히 포함하므로 이러한 것들을 연구하는 사람들은 [code](https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29)에 대해 알 가치가 있습니다.
+물론, 이러한 구문 확대에는 장단점이 있습니다: 새로운 언어를 만들어내면 원하는 것을 말하기 쉬워지지만, 다른 사람들이 이해하기 어려워집니다. 실제로 Racket 개발자들은 강연이나 논문에 Racket 코드를 꾸준히 포함하므로 이러한 것들을 연구하는 사람들은 <code><a href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29">code</a></code>에 대해 알 가치가 있습니다.
 
-사실, 당신은 이 [문서의 소스(source)](https://docs.racket-lang.org/quick/quick.scrbl)을 보고 싶을 수도 있습니다. 이 문서는 `#lang`로 시작하지만 Racket처럼 보이지 않을 것입니다; 그렇지만, 우리는 문서를 만들 때 Racket 프로그램으로 소스를 실행해가면서 작성했습니다. 우리는 Racket의 구문을 문서로 충분히 작성할 수 있을 정도로 확장하기 위해 [syntax-rules](https://docs.racket-lang.org/reference/stx-patterns.html#%28form._%28%28lib._racket%2Fprivate%2Fstxcase-scheme..rkt%29._syntax-rules%29%29)보다 많은 것을 사용해야 하지만, Racket의 구문 확장을 사용하는 것이 더 어려울 수도 있습니다.
+사실, 당신은 이 [문서의 소스(source)](https://docs.racket-lang.org/quick/quick.scrbl)을 보고 싶을 수도 있습니다. 이 문서는 `#lang`로 시작하지만 Racket처럼 보이지 않을 것입니다; 그렇지만, 우리는 문서를 만들 때 Racket 프로그램으로 소스를 실행해가면서 작성했습니다. 우리는 Racket의 구문을 문서로 충분히 작성할 수 있을 정도로 확장하기 위해 <code><a href="https://docs.racket-lang.org/reference/stx-patterns.html#%28form._%28%28lib._racket%2Fprivate%2Fstxcase-scheme..rkt%29._syntax-rules%29%29">syntax-rules</a></code>보다 많은 것을 사용해야 하지만, Racket의 구문 확장을 사용하는 것이 더 어려울 수도 있습니다.
 
 ---
 
 ## 객체
 
-객체(Object) 시스템은 Racket 사용자가 배우고 사용하는데 가치가 있는 정교한 언어 확장의 또다른 예시입니다. 객체는 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29)가 있는 경우에도 함수보다 나을 때가 있으며, 객체는 GUI에서 특히 잘 작동합니다. Racket의 GUI와 그래픽 시스템을 위한 API는 객체와 클래스(classes)로 표현됩니다.
+객체(Object) 시스템은 Racket 사용자가 배우고 사용하는데 가치가 있는 정교한 언어 확장의 또다른 예시입니다. 객체는 <code><a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a></code>가 있는 경우에도 함수보다 나을 때가 있으며, 객체는 GUI에서 특히 잘 작동합니다. Racket의 GUI와 그래픽 시스템을 위한 API는 객체와 클래스(classes)로 표현됩니다.
 
-클래스 시스템은 [racket/class](https://docs.racket-lang.org/reference/mzlib_class.html) 라이브러리에 의해 구현되며 [racket/gui/base](https://docs.racket-lang.org/gui/index.html), 라이브러리는 GUI와 그림 그리는 클래스를 제공합니다. 관례상, 클래스는 `%`로 끝나는 이름을 가집니다:
+클래스 시스템은 <code><a href="https://docs.racket-lang.org/reference/mzlib_class.html">racket/class</a></code> 라이브러리에 의해 구현되며 <code><a href="https://docs.racket-lang.org/gui/index.html">racket/gui/base</a></code>, 라이브러리는 GUI와 그림 그리는 클래스를 제공합니다. 관례상, 클래스는 `%`로 끝나는 이름을 가집니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29">require</a> racket/class
@@ -420,9 +420,9 @@ Racket 개발자들은 일반적으로 새로운 프로그램과 라이브러리
 > (<a href="https://docs.racket-lang.org/reference/ivaraccess.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._send%29%29">send</a> f show #t)
 </pre>
 
-[new](https://docs.racket-lang.org/reference/objcreation.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._new%29%29) 형식은 클래스의 객체를 만드는데, 여기서 `label`과 `width`와 같은 초기화 인수(initialization arguments)는 이름으로 제공됩니다. [send](https://docs.racket-lang.org/reference/ivaraccess.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._send%29%29) 형식은 `show`와 같은 객체의 메소드(method)와 메소드의 인수를 호출합니다; 이 경우 인수 `#t`는 불린(boolean) 상수 `“true”`입니다.
+<code><a href="https://docs.racket-lang.org/reference/objcreation.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._new%29%29">new</a></code> 형식은 클래스의 객체를 만드는데, 여기서 `label`과 `width`와 같은 초기화 인수(initialization arguments)는 이름으로 제공됩니다. <code><a href="https://docs.racket-lang.org/reference/ivaraccess.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._send%29%29">send</a></code> 형식은 `show`와 같은 객체의 메소드(method)와 메소드의 인수를 호출합니다; 이 경우 인수 `#t`는 불린(boolean) 상수 `“true”`입니다.
 
-[slideshow](https://docs.racket-lang.org/slideshow/index.html)로 생성된 그림은 graphics toolbox's drawing commands를 사용하여 그림을 drawing context(예를 들어 프레임의 캔버스)로 렌더링하는 함수를 캡슐화합니다. [slideshow](https://docs.racket-lang.org/slideshow/index.html)의 [make-pict-drawer](https://docs.racket-lang.org/pict/Rendering.html#%28def._%28%28lib._pict%2Fmain..rkt%29._make-pict-drawer%29%29) 함수는 그림의 그림 그리는 함수를 드러냅니다. 우리는 캔버스 안에 그림을 그리기 위해 캔버스-페인팅 콜백(canvas-painting callback)의 [make-pict-drawer](https://docs.racket-lang.org/pict/Rendering.html#%28def._%28%28lib._pict%2Fmain..rkt%29._make-pict-drawer%29%29)을 사용할 수 있습니다:
+<code><a href="https://docs.racket-lang.org/slideshow/index.html">slideshow</a></code>로 생성된 그림은 graphics toolbox's drawing commands를 사용하여 그림을 drawing context(예를 들어 프레임의 캔버스)로 렌더링하는 함수를 캡슐화합니다. <code><a href="https://docs.racket-lang.org/slideshow/index.html">slideshow</a></code>의 <code><a href="https://docs.racket-lang.org/pict/Rendering.html#%28def._%28%28lib._pict%2Fmain..rkt%29._make-pict-drawer%29%29">make-pict-drawer</a></code> 함수는 그림의 그림 그리는 함수를 드러냅니다. 우리는 캔버스 안에 그림을 그리기 위해 캔버스-페인팅 콜백(canvas-painting callback)의 <code><a href="https://docs.racket-lang.org/pict/Rendering.html#%28def._%28%28lib._pict%2Fmain..rkt%29._make-pict-drawer%29%29">make-pict-drawer</a></code>을 사용할 수 있습니다:
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> (add-drawing p)
@@ -445,12 +445,12 @@ Racket 개발자들은 일반적으로 새로운 프로그램과 라이브러리
 
 ## 다음 스텝
 
-이 Racket 도입부에서는 의도적으로 Lisp나 스키마(Scheme)를 소개하고 구별하는 전통적인 방법을 피하고자 했습니다: prefix arithmetic notation, 심볼(symbols), 인용구(quoting) 및 quasiquoting 리스트, [eval](https://docs.racket-lang.org/reference/eval.html#%28def._%28%28quote._~23~25kernel%29._eval%29%29), first-class continuations, 그리고 모든 구문이 [lambda](https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29)라고 가장하는 아이디어가 이에 해당합니다. 이들이 모두 Racket의 일부인 한편, 일상적인 Racket 프로그래밍의 주요 요소는 아닙니다.
+이 Racket 도입부에서는 의도적으로 Lisp나 스키마(Scheme)를 소개하고 구별하는 전통적인 방법을 피하고자 했습니다: prefix arithmetic notation, 심볼(symbols), 인용구(quoting) 및 quasiquoting 리스트, <code><a href="https://docs.racket-lang.org/reference/eval.html#%28def._%28%28quote._~23~25kernel%29._eval%29%29">eval</a></code>, first-class continuations, 그리고 모든 구문이 <code><a href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29">lambda</a></code>라고 가장하는 아이디어가 이에 해당합니다. 이들이 모두 Racket의 일부인 한편, 일상적인 Racket 프로그래밍의 주요 요소는 아닙니다.
 
 대신, Racket 개발자들은 보통 함수, 레코드(records), 객체, 예외(exceptions), 정규표현식(regular expressions), 모듈, 그리고 스레드(threads)를 포함한 프로그램을 만듭니다. 즉, Racket은 미니멀리스트 언어 -- 스키마가 주로 이렇게 묘사됩니다 -- 대신 광범위한 라이브러리와 툴을 가진 풍부한 언어(rich language)를 제공합니다.
 
-만약 개발이 처음이거나 배우기 위해 교재를 둘러볼 인내심이 있다면, <b><a href="http://htdp.org/">How to Design Programs</a></b>를 읽는 걸 추천합니다. 만약 이미 읽었거나 다음 책을 알고 싶다면, [Continue: Racket의 웹 어플리케이션](https://docs.racket-lang.org/continue/index.html) 섹션을 확인해주십시오.
+만약 개발이 처음이거나 배우기 위해 교재를 둘러볼 인내심이 있다면, <b><a href="http://htdp.org/">How to Design Programs</a></b>를 읽는 걸 추천합니다. 만약 이미 읽었거나 다음 책을 알고 싶다면, [Continue: Racket의 웹 어플리케이션](/tutorial/continue.md) 섹션을 확인해주십시오.
 
-숙련된 개발자로서 그림 대신 시스템 중심(systems-oriented)의 관점에서 Racket을 둘러보고 싶다면, [More: Racket을 이용한 시스템 프로그래밍](https://docs.racket-lang.org/more/index.html)를 추천합니다.
+숙련된 개발자로서 그림 대신 시스템 중심(systems-oriented)의 관점에서 Racket을 둘러보고 싶다면, [More: Racket을 이용한 시스템 프로그래밍](/tutorial/more.md)를 추천합니다.
 
 전체적인 Racket 언어와 툴을 깊이있게 공부하고 싶다면 [The Racket Guide](https://docs.racket-lang.org/guide/index.html)으로 넘어가십시오.
