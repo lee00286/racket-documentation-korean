@@ -23,11 +23,12 @@
 
 ### [1.1 평가 모델 (Evaluation Model)](language-model/evaluation-model.md)
 
-<h4><a href="language-model/evaluation-model#sub-expression.html">1.1.1 하위 식의 평가와 후속문 (Sub-expression Evaluation and Continuations)</a></h4>
+<h4><a href="language-model/evaluation-model.html#sub-expression">1.1.1 하위 식의 평가와 후속문 (Sub-expression Evaluation and Continuations)</a></h4>
 
 <h4><a href="language-model/evaluation-model#tail-position.html">1.1.2 꼬리 위치 (Tail Position)</a></h4>
+<h4><a href="language-model/evaluation-model.html#tail-position">1.1.2 꼬리 위치 (Tail Position)</a></h4>
 
-<h4><a href="multiple-return">1.1.3 많은 리턴 값 (Multiple Return Values)</a></h4>
+<h4><a href="language-model/evaluation-model.html#multiple-return">1.1.3 많은 리턴 값 (Multiple Return Values)</a></h4>
 
 ---
 
