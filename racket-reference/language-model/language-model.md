@@ -7,3 +7,7 @@
 <h3><a href="evaluation-model.html#tail-position">1.1.2 꼬리 위치 (Tail Position)</a></h3>
 
 <h3><a href="evaluation-model.html#multiple-return">1.1.3 많은 리턴 값 (Multiple Return Values)</a></h3>
+
+<h3><a href="evaluation-model.html#top-level">1.1.4 최상위 수준의 변수 (Top-Level Variables)</a></h3>
+
+<h3><a href="evaluation-model.html#object-imperative">1.1.5 객체와 명령형 업데이트 (Objects and Imperative Update)</a></h3>

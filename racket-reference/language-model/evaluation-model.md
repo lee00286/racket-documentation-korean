@@ -65,3 +65,61 @@ Racket 프로시저(procedure)는 많은 인수를 받아들이므로 이와 균
 보통, 구문 형식의 사양은 형식과 하위 식에서 만들어지는 <a href="#sub-expression">값</a>의 개수를 나타냅니다. 또한, 일부 프로시저(특히 <a href="#sub-expression">값</a>)는 다수의 <a href="#sub-expression">값</a>을 생성하며, 일부 프로시저(특히 [call-with-values](https://docs.racket-lang.org/reference/values.html#%28def._%28%28quote._~23~25kernel%29._call-with-values%29%29))는 내부에 특정 개수의 <a href="#sub-expression">값</a>을 받아들이는 후속문을 만듭니다.
 
 ---
+
+<h2><a id="top-level">1.1.4 최상위 수준의 변수 (Top-Level Variables)</a></h2>
+
+아래의 값이 주어졌다고 가정합니다
+
+```
+x = 10
+```
+
+그러면 대수학을 배운 학생은 `x + 1`을 아래처럼 단순화합니다:
+
+```
+x + 1 = 10 + 1 = 11
+```
+
+Racket도 평가 과정에서 거의 비슷하게 작동하는데, 요구만 있으면 [최상위 수준의 변수(top-level variables)](https://docs.racket-lang.org/reference/eval-model.html#%28tech._top._level._variable%29)([변수와 장소](https://docs.racket-lang.org/reference/eval-model.html#%28part._vars-and-locs%29)을 확인해주십시오)를 대체용으로 사용할 수 있습니다. 예를 들어, 아래의 정의가 주어졌다고 가정합니다
+
+<pre>
+(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x 10)
+</pre>
+
+그러면
+
+<pre>
+(<a href="https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._%2B%29%29">+</a> x 1) → (<a href="https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._%2B%29%29">+</a> 10 1) → 11
+</pre>
+
+Racket에서는, 정의가 생성되는 방식은 정의가 사용되는 방식만큼 중요합니다. 그러므로 Racket 평가는 정의와 현재 식 모두를 놓치지 않으며, <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>.과 같은 평가 형식에 대응하여 정의들을 확장합니다.
+
+그러면, 각 평가 과정은 현재 정의들과 프로그램을 새로운 정의들과 프로그램으로 변형합니다. <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>가 정의들 안으로 움직일 수 있게 되기 전에, 식(<code>define</code>의 오른편)이 <a href="#sub-expression">값</a>으로 단순화되어야 합니다. (<code>define</code>의 왼편은 식이 아니므로, 평가되지 않습니다.)
+
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate: <code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x (<a href="https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._%2B%29%29">+</a> 9 1)) (<a href="https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._%2B%29%29">+</a> x 1))</code><br>
+→ defined:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate: <code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x 10) (<a href="https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._%2B%29%29">+</a> x 1))</code><br>
+→ defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x 10)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate: <code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/void.html#%28def._%28%28quote._~23~25kernel%29._void%29%29">void</a>) (<a href="https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._%2B%29%29">+</a> x 1))</code><br>
+→ defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x 10)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate: <code>(<a href="https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._%2B%29%29">+</a> x 1)</code><br>
+→ defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x 10)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate: <code>(<a href="https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._%2B%29%29">+</a> 10 1)</code><br>
+→ defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x 10)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate: <code>11</code>
+
+<code><a href="https://docs.racket-lang.org/reference/set_.html#%28form._%28%28quote._~23~25kernel%29._set%21%29%29">set!</a></code>를 사용하면, 프로그램에 존재하는 [최상위 수준의 변수](https://docs.racket-lang.org/reference/eval-model.html#%28tech._top._level._variable%29)와 관련된 값을 바꿀 수 있게 됩니다:
+
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x 10)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate: <code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/set_.html#%28form._%28%28quote._~23~25kernel%29._set%21%29%29">set!</a> x 8) x)</code><br>
+→ defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x 8)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate: <code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/void.html#%28def._%28%28quote._~23~25kernel%29._void%29%29">void</a>) x)</code><br>
+→ defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x 8)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate: <code>x</code><br>
+→ defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x 8)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate: <code>8</code>
+
+---
+
+<h2><a id="object-imperative">1.1.5 객체와 명령형 업데이트 (Objects and Imperative Update)</a></h2>
