@@ -33,6 +33,8 @@
 
 <h4><a href="language-model/evaluation-model.html#object-imperative">1.1.5 객체와 명령형 업데이트 (Objects and Imperative Update)</a></h4>
 
+<h4><a href="language-model/evaluation-model.html#garbage-collection">1.1.6 가비지 컬렉션 (Garbage Collection)</a></h4>
+
 ---
 
 ## 2 Notation for Documentation

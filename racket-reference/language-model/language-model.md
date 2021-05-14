@@ -11,3 +11,5 @@
 <h3><a href="evaluation-model.html#top-level">1.1.4 최상위 수준의 변수 (Top-Level Variables)</a></h3>
 
 <h3><a href="evaluation-model.html#object-imperative">1.1.5 객체와 명령형 업데이트 (Objects and Imperative Update)</a></h3>
+
+<h3><a href="evaluation-model.html#garbage-collection">1.1.6 가비지 컬렉션 (Garbage Collection)</a></h3>
