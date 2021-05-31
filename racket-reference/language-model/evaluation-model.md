@@ -80,7 +80,7 @@ x = 10
 x + 1 = 10 + 1 = 11
 ```
 
-Racket도 평가 과정에서 거의 비슷하게 작동하는데, 요구만 있으면 [최상위 수준의 변수(top-level variables)](https://docs.racket-lang.org/reference/eval-model.html#%28tech._top._level._variable%29)([변수와 장소](https://docs.racket-lang.org/reference/eval-model.html#%28part._vars-and-locs%29)을 확인해주십시오)를 대체용으로 사용할 수 있습니다. 예를 들어, 아래의 정의가 주어졌다고 가정합니다
+Racket도 평가 과정에서 거의 비슷하게 작동하는데, 요구만 있으면 [최상위 수준의 변수(top-level variables)](https://docs.racket-lang.org/reference/eval-model.html#%28tech._top._level._variable%29)([변수와 장소](https://docs.racket-lang.org/reference/eval-model.html#%28part._vars-and-locs%29)를 확인해주십시오)를 대체용으로 사용할 수 있습니다. 예를 들어, 아래의 정의가 주어졌다고 가정합니다
 
 <pre>
 (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x 10)
@@ -92,7 +92,7 @@ Racket도 평가 과정에서 거의 비슷하게 작동하는데, 요구만 있
 (<a href="https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._%2B%29%29">+</a> x 1) → (<a href="https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._%2B%29%29">+</a> 10 1) → 11
 </pre>
 
-Racket에서는, 정의가 생성되는 방식은 정의가 사용되는 방식만큼 중요합니다. 그러므로 Racket 평가는 정의와 현재 식 모두를 놓치지 않으며, <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>.과 같은 평가 형식에 대응하여 정의들을 확장합니다.
+Racket에서는, 정의가 생성되는 방식은 정의가 사용되는 방식만큼 중요합니다. 그러므로 Racket 평가는 정의와 현재 식 모두를 놓치지 않으며, <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>과 같은 평가 형식에 대응하여 정의들을 확장합니다.
 
 그러면, 각 평가 과정은 현재 정의들과 프로그램을 새로운 정의들과 프로그램으로 변형합니다. <code><a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a></code>가 정의들 안으로 움직일 수 있게 되기 전에, 식(<code>define</code>의 오른편)이 <a href="#sub-expression">값</a>으로 단순화되어야 합니다. (<code>define</code>의 왼편은 식이 아니므로, 평가되지 않습니다.)
 
@@ -139,70 +139,70 @@ Racket에서는, 정의가 생성되는 방식은 정의가 사용되는 방식�
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-set%21%29%29">vector-set!</a> x 0 11)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> y 0))</code><br>
 
-→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> \<o1> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
+→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
 &nbsp;&nbsp;&nbsp;&nbsp;defined:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x \<o1>)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y x)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-set%21%29%29">vector-set!</a> x 0 11)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> y 0))</code><br>
 
-→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> \<o1> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x \<o1>)</code><br>
+→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
 &nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/void.html#%28def._%28%28quote._~23~25kernel%29._void%29%29">void</a>)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y x)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-set%21%29%29">vector-set!</a> x 0 11)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> y 0))</code><br>
 
-→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> \<o1> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x \<o1>)</code><br>
+→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
 &nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y x)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-set%21%29%29">vector-set!</a> x 0 11)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> y 0))</code><br>
 
-→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> \<o1> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x \<o1>)</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y \<o1>)</code><br>
+→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y &lto1&gt)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-set%21%29%29">vector-set!</a> x 0 11)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> y 0))</code><br>
 
-→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> \<o1> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x \<o1>)</code><br>
-<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y \<o1>)</code><br>
+→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
+<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y &lto1&gt)</code><br>
 &nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/void.html#%28def._%28%28quote._~23~25kernel%29._void%29%29">void</a>)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-set%21%29%29">vector-set!</a> x 0 11)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> y 0))</code><br>
 
-→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> \<o1> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x \<o1>)</code><br>
-<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y \<o1>)</code><br>
+→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
+<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y &lto1&gt)</code><br>
 &nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-set%21%29%29">vector-set!</a> x 0 11)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> y 0))</code><br>
 
-→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> \<o1> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x \<o1>)</code><br>
-<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y \<o1>)</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-set%21%29%29">vector-set!</a> \<o1> 0 11)</code><br>
+→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
+<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y &lto1&gt)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-set%21%29%29">vector-set!</a> &lto1&gt 0 11)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> y 0))</code><br>
 
-→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> \<o1> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 11 20))</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x \<o1>)</code><br>
-<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y \<o1>)</code><br>
+→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 11 20))</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
+<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y &lto1&gt)</code><br>
 &nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/begin.html#%28form._%28%28quote._~23~25kernel%29._begin%29%29">begin</a> (<a href="https://docs.racket-lang.org/reference/void.html#%28def._%28%28quote._~23~25kernel%29._void%29%29">void</a>)</code><br>
 <code style="margin-left:10em">(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> y 0))</code><br>
 
-→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> \<o1> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 11 20))</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x \<o1>)</code><br>
-<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y \<o1>)</code><br>
+→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 11 20))</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
+<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y &lto1&gt)</code><br>
 &nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> y 0))</code><br>
 
-→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> \<o1> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 11 20))</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x \<o1>)</code><br>
-<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y \<o1>)</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> \<o1> 0))</code><br>
+→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 11 20))</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
+<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y &lto1&gt)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector-ref%29%29">vector-ref</a> &lto1&gt 0))</code><br>
 
-→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> \<o1> (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 11 20))</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x \<o1>)</code><br>
-<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y \<o1>)</code><br>
+→ objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 11 20))</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
+<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> y &lto1&gt)</code><br>
 &nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>11</code><br>
 
 [최상위 수준의 변수](https://docs.racket-lang.org/reference/eval-model.html#%28tech._top._level._variable%29)와 객체 참조(object reference)의 차이는 중대합니다. [최상위 수준의 변수](https://docs.racket-lang.org/reference/eval-model.html#%28tech._top._level._variable%29)는 <a href="#sub-expression">값</a>이 아니므로, 평가되어야 합니다. [변수](https://docs.racket-lang.org/reference/eval-model.html#%28tech._variable%29) 수식이 평가될 때마다, 변수의 값은 현재 정의들에서 가져옵니다. 그러나 객체 참조는 값이기 때문에 더이상의 평가를 필요로 하지 않습니다. 위의 평가 과정은 객체 참조를 [값](https://docs.racket-lang.org/reference/eval-model.html#%28tech._variable%29)의 이름과 구분하기 위해 홑화살괄호로 씌운 `<o1>`을 사용합니다.
@@ -212,3 +212,23 @@ Racket에서는, 정의가 생성되는 방식은 정의가 사용되는 방식�
 ---
 
 <h2><a id="garbage-collection">1.1.6 가비지 컬렉션 (Garbage Collection)</a></h2>
+
+> 가비지 컬렉션과 관련된 함수를 보려면 [메모리 관리(Memory Management)](https://docs.racket-lang.org/reference/memory.html) 항목을 참고해주십시오.
+
+프로그램 상태(program state)에서는
+
+&nbsp;&nbsp;&nbsp;&nbsp;objects:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto1&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 10 20))</code><br>
+<code style="margin-left:5.5em">(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> &lto2&gt (<a href="https://docs.racket-lang.org/reference/vectors.html#%28def._%28%28quote._~23~25kernel%29._vector%29%29">vector</a> 0))</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;defined:<code>(<a href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29">define</a> x &lto1&gt)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;evaluate:<code>(<a href="https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._%2B%29%29">+</a> 1 x)</code>
+<br>
+
+평가할 때 `<o2>`에 의존할 수 없는데, 왜냐하면 이는 평가할 프로그램의 일부가 아닌데다 프로그램에서 접근할 수 있는 어떤 정의에도 언급되지 않기 때문입니다. 객체는 <em>도달 가능</em>하지 않다고 말합니다. 그러므로 <a href="#object-imperative">객체</a> `<o2>`는 <em>가비지 컬렉션(garbage collection)</em>을 통해 프로그램 상태에서 제거할 수 있습니다.
+
+몇 가지 특별한 복합 데이터 형식(compound datatypes)에는 객체에 대한 <em><a id="weak-reference">약한 참조(weak references)</a></em>가 있습니다. 이러한 약한 참조는 남은 계산에 접근 가능한 객체를 결정할 때 가비지 컬렉션을 통해 특별히 처리됩니다. 만약 <em>오직</em> 약한 참조를 통해서만 <a href="#object-imperative">객체</a>에 도달할 수 있다면, <a href="#object-imperative">객체</a>는 회수될 수 있으며 <a href="#weak-reference">약한 참조</a>는 다른 <a href="#sub-expression">값</a>으로 대체됩니다 (일반적으로 `#f`로 대체됩니다).
+
+특별한 경우로, [fixnum](https://docs.racket-lang.org/reference/numbers.html#%28tech._fixnum%29)는 언제나 가비지 컬렉션에 의해 접근 가능한 것으로 취급됩니다. 다양한 값에 언제나 접근 가능한 이유는 값이 시행되고 사용되는 방법 때문입니다: Latin-1 범위에 있는 [문자](https://docs.racket-lang.org/reference/characters.html#%28tech._character%29)는 언제나 접근 가능한데, 이는 <code><a href="https://docs.racket-lang.org/reference/Equality.html#%28def._%28%28quote._~23~25kernel%29._equal~3f%29%29">equal?</a></code> Latin-1 문자가 언제나 <code><a href="https://docs.racket-lang.org/reference/Equality.html#%28def._%28%28quote._~23~25kernel%29._eq~3f%29%29">eq?</a></code>이며, 모든 Latin-1 문자는 내부 모듈에 의해 언급됩니다. 비슷하게, <code><a href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._null%29%29">null</a></code>, `#t`, `#f`, <code><a href="https://docs.racket-lang.org/reference/port-ops.html#%28def._%28%28quote._~23~25kernel%29._eof%29%29">eof</a></code>, 그리고 `#<void>`는 언제나 접근 가능합니다. [quote](https://docs.racket-lang.org/reference/quote.html#%28form._%28%28quote._~23~25kernel%29._quote%29%29)로 생성된 값은 [quote](https://docs.racket-lang.org/reference/quote.html#%28form._%28%28quote._~23~25kernel%29._quote%29%29) 수식 자체가 접근 가능할 때 접근 가능합니다.
+
+---
+
+<h2><a id="procedure-applications-and-local-variables">1.1.7 프로시져 응용과 지역 변수 (Procedure Applications and Local Variables)</a></h2>

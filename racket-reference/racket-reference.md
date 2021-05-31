@@ -35,6 +35,8 @@
 
 <h4><a href="language-model/evaluation-model.html#garbage-collection">1.1.6 가비지 컬렉션 (Garbage Collection)</a></h4>
 
+<h4><a id="language-model/evaluation-model.html#procedure-applications-and-local-variables">1.1.7 프로시져 응용과 지역 변수 (Procedure Applications and Local Variables)</a></h4>
+
 ---
 
 ## 2 Notation for Documentation
